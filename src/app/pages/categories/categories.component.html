@@ -1,0 +1,14 @@
+<section class="mt-5 container">
+    <div class="grid grid-cols-3 gap-8">
+        @for (cat of categories; track cat._id) {
+            <div class="border rounded-lg hover:shadow-lg transition-all duration-300">
+                <div>
+                    <img [src]="cat.image" alt="" class="w-full h-[300px] object-cover">
+                </div>
+                <div class="p-5">
+                    <p class="mb-3 text-2xl text-green-700 text-center font-medium"> {{cat.name}} </p>
+                </div>
+            </div>
+        }
+    </div>
+</section>

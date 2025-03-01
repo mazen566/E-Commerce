@@ -1,0 +1,35 @@
+<section class="mt-5">
+    <div class="container">
+        @if(step == 1) {
+            <form [formGroup]="verfiyEmail" (ngSubmit)="verfiyEmailSubmit()">
+                <div class="mb-6">
+                    <label for="email" class="block mb-2 text-3xl font-medium text-black">please enter your email</label>
+                    <input formControlName="email" type="email" id="email" class="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5 py-4" placeholder="Email" required />
+                </div>
+                <button class="btn-2">verify</button>
+            </form>
+        }
+        @if (step == 2) {
+            <form [formGroup]="verfiyCode" (ngSubmit)="verfiyCodeSubmit()">
+                <div class="mb-6">
+                    <label for="resetCode" class="block mb-2 text-3xl font-medium text-black">please enter your verification code</label>
+                    <input formControlName="resetCode" type="resetCode" id="resetCode" class="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5 py-4" placeholder="code" required />
+                </div>
+                <button class="btn-2 capitalize">verify</button>
+            </form>
+        }
+        @if (step == 3) {
+            <form [formGroup]="resetPassword" (ngSubmit)="resetPasswordSubmit()">
+                <div class="mb-6">
+                    <label for="email" class="block mb-2 text-3xl font-medium text-black">reset your account password</label>
+                    <input formControlName="email" type="email" id="email" class="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5 py-4" placeholder="email" required />
+                </div>
+                <div class="mb-6">
+                    
+                    <input formControlName="newPassword" type="password" id="newPassword" class="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5 py-4" placeholder="password" required />
+                </div>
+                <button class="btn-2 capitalize">reset password</button>
+            </form>
+        }
+    </div>
+</section>

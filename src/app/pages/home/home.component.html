@@ -1,0 +1,65 @@
+<!-- Main Slider -->
+<section class="mt-5">
+    <div class="container grid grid-cols-4">
+        <div class="col-start-2">
+            <owl-carousel-o [options]="customMainSlider">
+                <ng-template carouselSlide>
+                    <img src="/images/41nN4nvKaAL._AC_SY200_.jpg" class="w-full" alt="">
+                </ng-template>  
+                <ng-template carouselSlide>
+                    <img src="/images/61cSNgtEISL._AC_SY200_.jpg" class="w-full" alt="">
+                </ng-template>  
+                <ng-template carouselSlide>
+                    <img src="/images/XCM_Manual_1396328_4379574_Egypt_EG_BAU_GW_DC_SL_Jewelry_379x304_1X._SY304_CB650636675_.jpg" class="w-full" alt="">
+                </ng-template>  
+            </owl-carousel-o>
+        </div>
+        <div>
+            <img src="/images/XCM_Manual_1396328_4379575_Egypt_EG_BAU_GW_DC_SL_Bags_Wallets_379x304_1X._SY304_CB650636675_.jpg" class="w-full" alt="">
+            <img src="/images/XCM_Manual_1533480_5305769_379x304_1X._SY304_CB616236518_.jpg" class="w-full" alt="">
+        </div>
+    </div>
+</section>
+
+<!-- Slider -->
+<section class="pt-16 text-center">
+    <owl-carousel-o [options]="customOptions">
+        @for (cat of categories; track cat._id) {
+            <ng-template carouselSlide>
+                <img [src]="cat.image" [alt]="" class="w-full h-[250px] object-contain">
+                <h3 class="text-xl"> {{cat.name}} </h3>
+            </ng-template>
+        }
+      </owl-carousel-o>
+</section>
+
+<!-- products -->
+<section class="mt-20">
+    <input [(ngModel)]="text" type="search" placeholder="Search..." name="" id="" class="w-[70%] mx-auto block rounded-md border border-gray-300">
+    <div class="grid grid-cols-4 gap-10 p-14">
+        @for (prod of products | search : text; track prod.id) {
+            <div role="button" class="card rounded-md overflow-hidden relative p-5  ">
+                <div [routerLink]="['/details', prod.id]">
+                    <div class="card-img">
+                        <img [src]="prod.imageCover" [alt]="prod.title" class="w-full h-[250px] object-contain">
+                    </div>
+                    <div class="card-body pt-5">
+                        <p class="capitalize text-green-600"> {{prod.category.name}} </p>
+                        <h2 class="capitalize py-2"> {{prod.title | termtext : 2}} </h2>
+                        <div class="flex justify-between items-center">
+                            <span> {{prod.price | currency : 'GBP'}} </span>
+                            <div>
+                                <i class="fas fa-star text-yellow-600"></i>
+                                <span> {{prod.ratingsAverage}} </span>
+                            </div>
+                        </div>
+                    </div>  
+                </div>
+                <div class="text-end">
+                    <i routerLinkActive="text-red-500" (click)="addToWish(prod.id)" role="button" class="fa-solid fa-heart text-2xl"></i>
+                </div>
+                <button (click)="addToCart(prod.id)" class="bg-green-500 px-20 py-2 rounded-md text-white block mx-auto hover:bg-green-600 hover:text-gray-300 transition-all">+ Add</button>
+            </div>
+        }
+    </div>
+</section>
